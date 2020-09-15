@@ -18,7 +18,7 @@ namespace Ecommerce.Domain
         public DbSet<PromotionProduct> PromotionProducts { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CardDetails> CardDetails { get; set; }
-        public DbSet<Orders> Orders { get; set; }
+        public DbSet<TransactionHistory> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Config> Configs { get; set; }

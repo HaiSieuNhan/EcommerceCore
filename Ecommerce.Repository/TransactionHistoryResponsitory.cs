@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Repository
 {
-    public class OrdersReponsitory : BaseRepository<TransactionHistory>, IOrdersRepository
+    public class TransactionHistoryResponsitory : BaseRepository<TransactionHistory>, ITransactionHistoryResponsitory
     {
-        public OrdersReponsitory(EcommerceDbContext dbContext) : base(dbContext)
+        public TransactionHistoryResponsitory(EcommerceDbContext dbContext) : base(dbContext)
         {
 
         }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Repository.Interfaces
 {
-    public interface IOrdersRepository:IRepository<TransactionHistory>
+    public interface ICategoryReponsitory : IRepository<Category>
     {
-        Task<ICollection<TransactionHistory>> GetOrdersParrent();
+        Task<ICollection<Category>> GetCategoryParrent();
     }
 }

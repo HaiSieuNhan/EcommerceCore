@@ -13,9 +13,13 @@ namespace Ecommerce.Domain.Models
         [Required]
         [MaxLength(256)]
         public string UserName { get; set; }
+        [MaxLength(256)]
+        public string FirstName { get; set; }
+        [MaxLength(256)]
+        public string LastName { get; set; }
         public DateTime LastLoginDate { get; set; }
-        public byte PassWordHash { get; set; }
-        public byte PassWordSalt { get; set; }
+        public byte[] PassWordHash { get; set; }
+        public byte[] PassWordSalt { get; set; }
 
 
         #region RelationShip
@@ -26,7 +30,7 @@ namespace Ecommerce.Domain.Models
         public ICollection<Point> Points { get; set; }
         public ICollection<ProductRating> ProductRatings { get; set; }
         public ICollection<UserProfile> UserProfiles { get; set; }
-        public ICollection<Orders> Orders { get; set; }
+        public ICollection<TransactionHistory> Orders { get; set; }
         public ICollection<Cart> Carts { get; set; }
         public ICollection<TransactionHistory> TransactionHistories { get; set; }
         public ICollection<Comment> Comments { get; set; }

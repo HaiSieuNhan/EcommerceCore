@@ -12,7 +12,7 @@ namespace Ecommerce.Domain.Models
         #region RelationShip
         [ForeignKey("Orders")]
         public Guid OrderId { get; set; }
-        public virtual Orders Orders { get; set; }
+        public virtual TransactionHistory Orders { get; set; }
         [ForeignKey("Product")]
         public Guid ProductId { get; set; }
         public virtual Product Product  { get; set; }

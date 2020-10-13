@@ -29,6 +29,7 @@ namespace EcommerceCore.WebApp
         {
             services.AddControllersWithViews();
             services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            ConfigureCoreAndRepositoryService(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +54,6 @@ namespace EcommerceCore.WebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                ConfigureCoreAndRepositoryService(services);
             });
         }
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)

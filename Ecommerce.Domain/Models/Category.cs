@@ -17,9 +17,6 @@ namespace Ecommerce.Domain.Models
         public Guid? ParentId { get; set; }
 
         #region Relation
-        //[ForeignKey("Language")]
-        //public Guid LanguageId { get; set; }
-        //public virtual Language Language { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         #endregion
     }

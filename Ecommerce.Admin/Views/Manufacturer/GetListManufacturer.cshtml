@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel.ManufacturerAdminViewModel>
+
+@{
+    ViewData["Title"] = "GetListManufacturer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var stt = 1;
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th> STT </th>
+                                    <th>Tên Nhà Sản Xuất </th>
+                                    <th> Mô Tả</th>
+                                    <th> Website</th>
+                                    <th> Logo Web </th>
+                                    <th> Tên Sản Phẩm</th>
+                                    <th> Nhà Cung Cấp</th>
+                                    <th> Danh Mục </th>
+                                    <th> Chức năng </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td> @stt</td>
+                                    <td> @item.Name</td>
+                                    <td> @item.Description</td>
+                                    <td> @item.Website</td>
+                                    <td> @item.LogoFile</td>
+                                    <td> @item.ProductName</td>
+                                    <td> @item.SupplierName</td>
+                                    <td> @item.CategoryName</td>
+                                    <td>
+                                        <a onclick="showInPopup('@Url.Action("Edit","Category",new { id =item.Id},Context.Request.Scheme)','Sửa danh mục')" class="btn btn-info text-white "><i class="fas fa-random"></i></a>
+                                        <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                            <button type="submit" value="Xóa" class="btn btn-danger">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                    @(stt++)
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

@@ -1,0 +1,128 @@
+﻿@model Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel.ProductAdminViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Nhà Sản Xuất
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ManufacturerName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Danh Mục Sản Phẩm
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.CategoryName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Nhà Cung Cấp
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.SupplierName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Url Sản Phẩm
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.UrlName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Tên Sản Phẩm
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Mã Sku
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Sku)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Ngày Mở Bán
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.PublicationDate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Giá
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Price)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Lượt Xem
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Views)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Keyword)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Keyword)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ExpirationDate)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ExpirationDate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ShortDescription)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ShortDescription)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Weight)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Weight)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Height)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Height)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Width)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Width)
+                            </dd>
+                        </dl>
+                        <div class="form-group">
+                            <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@Model"><i class="fas fa-edit"></i>Sửa</a> 
+                            <a asp-action="GetListProduct" class="btn btn-success">Trở Lại</a>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

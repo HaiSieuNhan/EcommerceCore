@@ -60,7 +60,10 @@ namespace Ecommerce.Service.Services
         {
             await _baseReponsitory.DeleteAsync(entity, isSave);
         }
-
+        public async Task SaveChangesAsync(bool isSave = true)
+        {
+            await _baseReponsitory.SaveChangesAsync(isSave);
+        }
         #endregion
 
         #region Normal
@@ -114,6 +117,13 @@ namespace Ecommerce.Service.Services
         {
             throw new NotImplementedException();
         }
+
+        public void UploadImageIfAvailable(T entity, bool isSave)
+        {
+            
+        }
+
+        
 
         #endregion
 

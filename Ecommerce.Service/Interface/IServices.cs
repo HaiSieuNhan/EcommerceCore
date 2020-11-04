@@ -20,7 +20,7 @@ namespace Ecommerce.Service.Interface
         bool AddMany(IEnumerable<T> entities);
         void Update(T entity);
         void Delete(T entity);
-
+        void UploadImageIfAvailable(T entity, bool isSave);
         #endregion
 
         #region Async function
@@ -34,9 +34,10 @@ namespace Ecommerce.Service.Interface
         Task UpdateAsync(T entity, bool isSave = true);
         Task DeleteAsync(T entity, bool isSave = true);
 
+        Task SaveChangesAsync(bool isSave = true);
         #endregion
 
-        
+
 
     }
 }

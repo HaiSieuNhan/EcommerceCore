@@ -9,7 +9,7 @@ using Ecommerce.Service.Dto;
 using Ecommerce.Service.Interface;
 namespace Ecommerce.Service.Services
 {
-    public class ProductRatingService : EcommerceService<ProductRating>
+    public class ProductRatingService : EcommerceServices<ProductRating>
     {
         private readonly IProductRatingRepository _productratingRepository;
         private readonly IMapper _mapper;

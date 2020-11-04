@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Ecommerce.Portal.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase

@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Ecommerce.Service.Services
 {
-    public class PointService : EcommerceService<Point>, IPointService
+    public class PointService : EcommerceServices<Point>, IPointService
     {
         private readonly IPointRepository _pointRepository;
         private readonly IMapper _mapper;

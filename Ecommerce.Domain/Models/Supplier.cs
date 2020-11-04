@@ -25,7 +25,8 @@ namespace Ecommerce.Domain.Models
         public string Phone { get; set; }
         [MaxLength(30)]
         public string Fax { get; set; }
-
+        [MaxLength(255)]
+        public string Address { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

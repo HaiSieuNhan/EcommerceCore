@@ -38,6 +38,7 @@ namespace Ecommerce.Portal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCloudscribePagination();
             services.AddCors();
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
             services.AddRazorPages();
@@ -191,13 +192,13 @@ namespace Ecommerce.Portal
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IServices<>), typeof(ConfigService<>));
+            services.AddScoped(typeof(IServices<>), typeof(EcommerceServices<>));
 
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICartServices, CartService>();
 
-            services.AddScoped<ICategoryReponsitory, CategoryReponsitory>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddScoped<IProductSevice, ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -207,6 +208,10 @@ namespace Ecommerce.Portal
 
             services.AddScoped<ICartDetailsServices, CartDetailsServices>();
             services.AddScoped<ICartDetailsRepository, CartDetailsRepository>();
+
+            services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
+            services.AddScoped<IManufacturerServices, ManufacturerServices>();
+
         }
     }
 }

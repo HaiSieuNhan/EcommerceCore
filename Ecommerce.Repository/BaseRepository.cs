@@ -14,9 +14,11 @@ namespace Ecommerce.Repository
     {
         protected readonly EcommerceDbContext DbContext;
 
+
         public BaseRepository(EcommerceDbContext dbContext)
         {
             DbContext = dbContext;
+
         }
 
         #region Async function       
@@ -37,7 +39,6 @@ namespace Ecommerce.Repository
             {
                 await DbContext.SaveChangesAsync();
             }
-
             return entity;
         }
 
@@ -201,7 +202,13 @@ namespace Ecommerce.Repository
             }
 
         }
-
+        public virtual async Task SaveChangesAsync(bool isSave)
+        {
+            if (isSave)
+            {
+                await DbContext.SaveChangesAsync();
+            }
+        }
         public T GetSingleOrDefault(Expression<Func<T, bool>> match)
         {
             throw new NotImplementedException();
@@ -223,6 +230,11 @@ namespace Ecommerce.Repository
             DbContext.Set<T>().RemoveRange(entities);
             DbContext.SaveChangesAsync();
         }
+
+        
+
+
+
 
         #endregion
 

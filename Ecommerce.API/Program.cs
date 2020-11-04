@@ -34,8 +34,8 @@ namespace Ecommerce.Portal
 
                 //todo: uncomment when Seed() functin is implemented.
                 // Seed the database in development mode
-                  // dbInitializer.Seed().GetAwaiter().GetResult();
-               dbInitializer.Seed();
+                   dbInitializer.Seed().GetAwaiter().GetResult();
+               //dbInitializer.Seed();
             }
 
             host.Run();

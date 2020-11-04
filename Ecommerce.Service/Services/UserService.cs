@@ -9,7 +9,7 @@ using Ecommerce.Service.Interface;
 
 namespace Ecommerce.Service.Services
 {
-    public class UserService : EcommerceService<User>, IUserService
+    public class UserService : EcommerceServices<User>, IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;

@@ -13,7 +13,7 @@ namespace Ecommerce.Domain
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-
+        public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
@@ -35,6 +35,6 @@ namespace Ecommerce.Domain
         public DbSet<HistoryDetail> HistoryDetails { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; }
+        
     }
 }

@@ -2,10 +2,19 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="cloudscribe.Pagination.Models" Version="1.1.0" />
+		<PackageReference Include="cloudscribe.Web.Pagination" Version="3.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+		<PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -16,6 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ecommerce.Service\Ecommerce.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 
 </Project>

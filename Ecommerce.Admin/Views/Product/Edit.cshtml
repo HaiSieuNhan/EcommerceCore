@@ -1,0 +1,111 @@
+﻿@model Ecommerce.Service.ViewModels.Admin.AddProduct.AddProductModel
+@using Ecommerce.Admin.Extensions
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info text-center">Add Make of Vehicle</h2>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="col-2">
+                    <label for="formGroupExampleInput">Nhập Tên Sản Phẩm</label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="@Model.Product.Name" class="form-control" placeholder="Nhập tên sản phẩm">
+                    <span asp-validation-for="@Model.Product.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="formGroupExampleInput">Nhập Giá</label>
+                <input asp-for="@Model.Product.Price" class="form-control" placeholder="Giá sản phẩm">
+                <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Nhập Mô Tả Ngắn</label>
+                <textarea asp-for="@Model.Product.ShortDescription" class="form-control" placeholder="Nhập mô tả ngắn" style="height:120px"></textarea>
+                <span asp-validation-for="@Model.Product.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Nhập Mô Tả Chi Tiết</label>
+                <textarea asp-for="@Model.Product.Description" class="form-control" placeholder="Nhập mô tả chi tiết" style="height:120px"></textarea>
+                <span asp-validation-for="@Model.Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="@Model.Product.PublicationDate"></label>
+                <div class="input-group">
+                    <input type="datetime" id="PublicationDate" asp-for="@Model.Product.PublicationDate" class="form-control" data-toggle="datepicker">
+                </div>
+                <span asp-validation-for="@Model.Product.PublicationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Key Word</label>
+                <input asp-for="@Model.Product.Keyword" class="form-control" placeholder="key word tìm kiếm">
+                <span asp-validation-for="@Model.Product.Keyword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Mã Sku</label>
+                <input asp-for="@Model.Product.Sku" class="form-control" placeholder="Mã Sku">
+                <span asp-validation-for="@Model.Product.Sku" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="formGroupExampleInput">Url Name</label>
+                <input asp-for="@Model.Product.UrlName" class="form-control" placeholder="Url Sản Phẩm">
+                <span asp-validation-for="@Model.Product.UrlName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-4"><label asp-for="@Model.Product.ManufacturerId" class="control-label"></label></div>
+                            <div class="col-md-8 ">
+                                <select asp-for="@Model.Product.ManufacturerId" asp-items="@Model.Manufacturer.ToSelectListItem()" id="ManufacturerId">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-4"><label asp-for="@Model.Product.SupplierId" class="control-label"></label></div>
+                            <div class="col-md-8 ">
+                                <select asp-for="@Model.Product.SupplierId" asp-items="Model.Supplier.ToSelectListItem()" id="SupplierId">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-4"><label asp-for="@Model.Product.CategoryId" class="control-label"></label></div>
+                            <div class="col-md-8 ">
+                                <select asp-for="@Model.Product.CategoryId" asp-items="Model.Category.ToSelectListItem()" id="CategoryId">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-auto">
+                    <label asp-for="Product.ImageName"></label>
+                </div>
+                <div class="col-4">
+                    <input type="file" name="files" class="form-control" />
+                </div>*@
+            <div class="form-group">
+                <label asp-for="Product.ImageFile" class="control-label"></label>
+                <input asp-for="Product.ImageFile" accept="images/*" />
+                <span asp-validation-for="Product.ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="GetListProduct" class="btn btn-success">Trở Lại</a>
+            </div>
+        </form>
+    </div>
+</section>

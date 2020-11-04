@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,15 @@ namespace Ecommerce.Domain.Models
         public double Weight { get; set; }
         public double Height { get; set; }
         public double Width { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
+
+
         #endregion
 
         #region Relation

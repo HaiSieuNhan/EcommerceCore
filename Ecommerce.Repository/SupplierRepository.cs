@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Common.Infrastructure.ViewModel.Admin;
+using Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel;
 using Ecommerce.Domain;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
@@ -18,6 +19,23 @@ namespace Ecommerce.Repository
 
         }
 
- 
+        public async Task<List<SupplierAdminViewModel>> GetListSupplierAdminViewModel()
+        {
+            var listSupplier = await (from p in DbContext.Products
+                                      join c in DbContext.Categories on p.CategoryId equals c.Id
+                                      join s in DbContext.Suppliers on p.SupplierId equals s.Id
+                                      where p.IsDeleted == false
+                                      select new SupplierAdminViewModel
+                                      {
+                                          Name = s.Name,
+                                          Email = s.Email,
+                                          Phone = s.Phone,
+                                          Address = s.Address,
+                                          ProductName = p.Name,
+                                          Price = p.Price,
+                                          CategoryName = c.Name
+                                      }).ToListAsync();
+            return listSupplier;
+        }
     }
 }

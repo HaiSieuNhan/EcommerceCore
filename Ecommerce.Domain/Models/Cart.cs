@@ -16,11 +16,9 @@ namespace Ecommerce.Domain.Models
         //[StringLength(7)]
         //public string VoucherCode { get; set; }
         #region Property
-        [Key]
-        public Guid Id { get; set; }
         public int ShoppingNumber { get; set; }
         public decimal TotalPrice { get; set; }
-        public ShoppingCartEnum Status { get; set; }
+        public ShoppingCartEnum CartStatus { get; set; }
         #endregion
 
         #region RelationShip

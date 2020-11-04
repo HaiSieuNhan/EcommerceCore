@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Common.Infrastructure.ViewModel.Admin;
+using Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
@@ -19,5 +20,11 @@ namespace Ecommerce.Service
             _supplierReponsitory = supplierReponsitory;
         }
 
+        public async Task<List<SupplierAdminViewModel>> GetListSupplierAdmin()
+        {
+            var suppliertlist = await _supplierReponsitory.GetListSupplierAdminViewModel();
+
+            return suppliertlist;
+        }
     }
 }

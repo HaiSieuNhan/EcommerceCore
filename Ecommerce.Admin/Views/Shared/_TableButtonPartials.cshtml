@@ -1,0 +1,9 @@
+﻿@model Guid
+
+<td>
+    <div class="mt-3">
+        <a type="button" class="btn btn-primary  mb-1" asp-action="Details" asp-route-id="@Model"><i class="far fa-list-alt"></i></a>
+        <a type="button" class="btn btn-primary  mb-1" asp-action="Edit" asp-route-id="@Model"><i class="far fa-edit "></i></a>
+        <a onclick="if(!(confirm('Bạn có chắc muốn xóa sản phẩm này'))) { return false}" type="button" class="btn btn-danger rounded-0  mb-1" asp-action="Delete" asp-route-id="@Model"><i class="far fa-trash-alt "></i></a>
+    </div>
+</td>

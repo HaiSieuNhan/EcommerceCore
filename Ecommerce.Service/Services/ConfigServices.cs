@@ -12,7 +12,7 @@ using Ecommerce.Service.Services;
 
 namespace Ecommerce.Core.Services
 {
-    public class ConfigService : EcommerceService<Config>, IConfigService
+    public class ConfigService : EcommerceServices<Config>, IConfigService
     {
         private readonly IConfigRepository _configRepository;
         private readonly IMapper _mapper;

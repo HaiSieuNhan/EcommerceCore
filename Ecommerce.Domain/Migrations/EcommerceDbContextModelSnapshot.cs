@@ -71,6 +71,9 @@ namespace Ecommerce.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("CartStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -528,6 +531,9 @@ namespace Ecommerce.Domain.Migrations
                     b.Property<double>("Height")
                         .HasColumnType("float");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -862,6 +868,10 @@ namespace Ecommerce.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<string>("CodeName")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
@@ -979,7 +989,7 @@ namespace Ecommerce.Domain.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("TransactionHistory");
+                    b.ToTable("TransactionHistories");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.User", b =>

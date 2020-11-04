@@ -10,8 +10,13 @@ namespace Ecommerce.Repository.Interfaces
     {
         Task<List<Product>> GetProductByCategoryIdAndOrderByView(Guid categoryId);
         Task<bool> GrowUpViewByProductId(Guid productId);
-        //lay ra danh sach product
-        Task<List<ProductAdminViewModel>> GetListProductAdminViewModel();
+        //lay ra danh sach product 
+        Task<List<ProductAdminViewModel>> GetProductAdminViewModels(string order, string searchString);
+        Task<List<ProductAdminViewModel>> GetHotProductInWeek();
+
+        //get details product
+        Task<ProductAdminViewModel> GetDetailsProductAdminViewModels(Guid id);
+
     } 
    
 }

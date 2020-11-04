@@ -9,7 +9,7 @@ using Ecommerce.Service.ViewModels;
 
 namespace Ecommerce.Service.Services
 {
-    public class CategoryService : EcommerceService<Category>, ICategoryService
+    public class CategoryService : EcommerceServices<Category>, ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
         //private readonly IMapper _mapper;

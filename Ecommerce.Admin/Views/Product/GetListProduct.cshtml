@@ -1,0 +1,201 @@
+﻿@*@model IEnumerable<Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel.ProductAdminViewModel>*@
+@model X.PagedList.IPagedList<Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel.ProductAdminViewModel>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@{
+    ViewData["Title"] = "GetListProduct";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="card spur-card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    @using (Html.BeginForm("GetListProduct", "Product", FormMethod.Get))
+                                    {
+                                        <p class="d-flex justify-content-center p-2">
+                                            @Html.TextBox("SearchString")
+                                            <input type="submit" value="Search" class="btn btn-outline-danger" />
+                                        </p>
+                                    }
+                                    <h2 class="text-info d-flex justify-content-center p-2">Danh Sách Sản Phẩm</h2>
+                                    <p class="d-flex justify-content-center p-2">
+                                        <a class="btn btn-info" asp-action="Create"><i class="far fa-plus-square"></i>&nbsp; Add New Product</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                @*<table class="table table-hover table-in-card">
+                                        <thead>
+                                            <tr>
+                                                <th> STT </th>
+                                                <th>
+                                                    @if (ViewBag.NameSortParm == "Name_Prduct_ASC")
+                                                    {
+                                                        <a asp-action="GetListProduct" asp-route-order="Name_Prduct_DESC"><i class="fas fa-sort-alpha-down-alt"></i> Tên SP</a>
+                                                    }
+                                                    else if (ViewBag.NameSortParm == "Name_Prduct_DESC")
+                                                    { <a asp-action="GetListProduct" asp-route-order="Name_Prduct_ASC"><i class="fas fa-sort-alpha-up"></i> Tên SP</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="GetListProduct" asp-route-order="Name_Prduct_DESC"><i class="fas fa-sort-alpha-down-alt"></i> Tên SP</a>
+                                                    }
+                                                </th>
+
+                                                <th>
+                                                    @if (ViewBag.NameSortParm == "Price_Prduct_ASC")
+                                                    {
+
+                                                        <a asp-action="GetListProduct" asp-route-order="Price_Prduct_DESC"><i class="fas fa-sort-numeric-down-alt"></i> Giá</a>
+                                                    }
+                                                    else if (ViewBag.NameSortParm == "Price_Prduct_DESC")
+                                                    {
+
+                                                        <a asp-action="GetListProduct" asp-route-order="Price_Prduct_ASC"><i class="fas fa-sort-numeric-up-alt"></i> Giá</a>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <a asp-action="GetListProduct" asp-route-order="Price_Prduct_DESC"><i class="fas fa-sort-numeric-down-alt"></i> Giá</a>
+                                                    }
+                                                </th>
+
+                                                <th> Mô tả ngắn </th>
+                                                <th> Ngày bán </th>
+                                                <th> Từ khóa </th>
+                                                <th> Sku </th>
+                                                <th>
+                                                    Lượt xem
+                                                </th>
+                                                <th> Nhà sản xuất </th>
+                                                <th> Nhà cung cấp </th>
+                                                <th> Chức năng </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th> @(stt++)</th>
+                                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.ShortDescription)</td>
+                                                    <td>@item.PublicationDate.ToString("dd/MM/yyyy")</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Keyword) </td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Sku) </td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Views) </td>
+                                                    <td>@Html.DisplayFor(modelItem => item.ManufacturerName) </td>
+                                                    <td>@Html.DisplayFor(modelItem => item.SupplierName) </td>
+
+                                                    <partial name="_TableButtonPartials" model="item.Id" />
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>*@
+                            </div>
+                            <table class="table table-hover table-in-card">
+                                <tr class="table-info">
+
+                                    <th class="d-flex justify-content-center">
+                                        Photo
+                                    </th>
+                                    <th>
+                                        @if (ViewBag.NameSortParm == "Name_Prduct_ASC")
+                                        {
+                                            <a asp-action="GetListProduct" asp-route-order="Name_Prduct_DESC"><i class="fas fa-sort-alpha-down-alt"></i> Product Name</a>
+                                        }
+                                        else if (ViewBag.NameSortParm == "Name_Prduct_DESC")
+                                        { <a asp-action="GetListProduct" asp-route-order="Name_Prduct_ASC"><i class="fas fa-sort-alpha-up"></i> Product Name</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="GetListProduct" asp-route-order="Name_Prduct_DESC"><i class="fas fa-sort-alpha-down-alt"></i> Product Name</a>
+                                        }
+                                    </th>
+                                    <th>
+                                        Product Details
+                                    </th>
+                                    <th>
+                                        @if (ViewBag.NameSortParm == "Price_Prduct_ASC")
+                                        {
+
+                                            <a asp-action="GetListProduct" asp-route-order="Price_Prduct_DESC"><i class="fas fa-sort-numeric-down-alt"></i> Price</a>
+                                        }
+                                        else if (ViewBag.NameSortParm == "Price_Prduct_DESC")
+                                        {
+
+                                            <a asp-action="GetListProduct" asp-route-order="Price_Prduct_ASC"><i class="fas fa-sort-numeric-up-alt"></i> Price</a>
+                                        }
+                                        else
+                                        {
+
+                                            <a asp-action="GetListProduct" asp-route-order="Price_Prduct_DESC"><i class="fas fa-sort-numeric-down-alt"></i> Price</a>
+                                        }
+                                    </th>
+                                    <th>
+                                        Product Information
+                                    </th>
+
+                                    <th>Chức Năng</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @*<img src="~/@Html.DisplayFor(modelItem => item.ImageName)"  width="150" height="100" />*@
+                                            
+                                            <img src="@("~/images/product/"+item.ImageName)" asp-append-version="true" width="150" height="100" />
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>
+                                            <b>Ngày mở bán: </b>@item.PublicationDate.ToString("dd/MM/yyyy")<br />
+                                            <b>Keyword: </b>@Html.DisplayFor(modelItem => item.Keyword)<br />
+                                            <b> Mã Sku: </b>@Html.DisplayFor(modelItem => item.Sku)<br />
+                                            <b>Views: </b>@Html.DisplayFor(modelItem => item.Views)<br />
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Price) </td>
+                                        <td>
+                                            <b>Danh Mục: </b> @Html.DisplayFor(modelItem => item.CategoryName)<br />
+                                            <b>Nhà Sản Xuất: </b>@Html.DisplayFor(modelItem => item.ManufacturerName)<br />
+                                            <b>Nhà cung cấp: </b>@Html.DisplayFor(modelItem => item.SupplierName) <br />
+                                            <b>ShortDescription: </b>@Html.DisplayFor(modelItem => item.ShortDescription)<br />
+                                        </td>
+                                        <partial name="_TableButtonPartials" model="item.Id" />
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <cs-pager cs-paging-pagenumber="(int)@Model.PageNumber"
+                                      cs-paging-totalitems="(int)@Model.PageCount"
+                                      cs-paging-pagesize="1"
+                                      cs-pagenumber-param="page"
+                                      asp-controller="Product"
+                                      asp-action="GetListProduct"
+                                      cs-pager-li-current-class="page-item active"
+                                      cs-pager-li-other-class="page-item"
+                                      cs-pager-li-non-active-class="page-item disabled"
+                                      cs-pager-link-current-class="page-link"
+                                      cs-pager-link-other-class="page-link">
+                            </cs-pager>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

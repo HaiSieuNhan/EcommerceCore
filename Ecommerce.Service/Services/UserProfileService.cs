@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Ecommerce.Service.Services
 {
-    public class UserProfileService : EcommerceService<UserProfile>, IUserProfileService
+    public class UserProfileService : EcommerceServices<UserProfile>, IUserProfileService
     {
         private readonly IUserProfileRepository _userprofileRepository;
         private readonly IMapper _mapper;

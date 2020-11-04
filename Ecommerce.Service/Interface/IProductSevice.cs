@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.ViewModels;
+using Ecommerce.Service.ViewModels.Admin.AddProduct;
 
 namespace Ecommerce.Service.Interface
 {
@@ -22,7 +23,10 @@ namespace Ecommerce.Service.Interface
         //Task<ProductViewModel> GetDiscountProduct();
         //// lấy ra thông tin sản phẩm
         //Task<ProductViewModel> GetProduct();
+        Task<List<ProductAdminViewModel>> GetListProduct(string order, string searchString);
+        Task<ProductAdminViewModel> GetDetailsProductAdminViewModels(Guid id);
 
-        Task<List<ProductAdminViewModel>> GetListProduct();
+        Task SaveChange(bool isSave);
+        Task UploadImageAsync(Product product);
     }
 }

@@ -1,6 +1,55 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Change input control border color */
+.form-control, .input-group-text {
+    border: 1px solid #0080ff;
+}
+
+a.btn:hover {
+    cursor: pointer !important;
+}
+
+/*loader*/
+.loaderbody {
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background-color: rgba(128,128,128,0.2);
+    z-index: 2147483647;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hide {
+    display: none;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -68,4 +117,159 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+.paragraph {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+}
+.mini_paragraph{
+    display:block;
+}
+
+.table-scroll{
+    overflow:scroll;
+}
+table {
+    table-layout: fixed;
+}
+table td img{
+    object-fit:contain;
+    width:100%;
+}
+table td img.large{
+    height:120px;
+}
+    table td img.small-img {
+        height: 80px;
+    }
+    .card-header a i {
+        margin-right:5px
+    }
+.dataTables_filter input:focus {
+    border: 1px solid #fff;
+}
+table tbody {
+    font-size: 14px !important;
+    font-family: sans-serif !important;
+}
+table p {
+    margin: 0px !important;
+}
+form select {
+    border-radius: 3px;
+    padding: 5px;
+}
+.form-group{
+    margin-bottom: 2rem !important;
+}
+.form-control{
+    box-shadow:none !important;
+}
+.attribute{
+    padding:25px 15px 10px;
+    margin-bottom:15px;
+    border:1px solid #333;
+    border-radius:5px;
+    text-align:center;
+    position:relative;
+}
+.btn-close {
+    cursor: pointer;
+    position: absolute !important;
+    top: -3px;
+    right: 6px;
+    padding: 4px !important;
+    font-size: 20px;
+}
+.attr-head{
+    border-bottom:1px solid #333;
+    padding-bottom:5px;
+    margin-bottom:15px;
+}
+.attr-filter{
+    margin-bottom:30px;
+}
+.attr-filter i{
+    margin-right:5px;
+}
+    .attr-filter ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .attr-filter ul li{
+        margin-left:10px;
+    }
+.image-product {
+    padding: 30px 15px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+.button-container {
+    position: relative;
+    margin-left: 8px;
+}
+
+    .button-container .button {
+        cursor: pointer;
+        display: block;
+        padding: 8px 14px;
+        border: 1px solid rgb(0, 127, 240);
+        border-radius: 4px;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+.button-container a.button {
+    color: rgb(0, 127, 240) !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+     .button-container input {
+        display: none;
+    }
+
+    .button-container a:hover {
+        background: rgb(0, 127, 240);
+        color: #fff !important;
+    }
+    .picture{
+        width:100px;
+        height:100px;
+        margin-left:10px;
+        cursor:pointer;
+    }
+    .main-picture{
+
+    }
+    .picture img{
+        width:100%;
+        height:100%;
+        object-fit:contain
+    }
+.picture-input{
+    display:flex;
+    margin-top:-10px;
+}
+#add-img i {
+    margin-right: 5px;
+}
+.main-picture {
+    display: flex;
+}
+.is-main-picture {
+    width: 100px;
+    text-align: center;
+    margin-left: 10px;
+}
+.is-main-picture input{
+    width:24px;
+    height:24px;
 }

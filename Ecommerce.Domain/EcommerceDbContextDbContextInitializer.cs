@@ -68,6 +68,12 @@ namespace Ecommerce.Domain
                     Description = "Loa PC các loại",
                     ParentId = null,
                 });
+                await context.AddAsync(new Category
+                {
+                    Name = "Điện lạnh",
+                    Description = "Danh mục điện thoại, máy tính bảng",
+                    ParentId = null
+                });
                 await context.SaveChangesAsync();
                 var dt = await context.Categories.FirstOrDefaultAsync(x => x.Name == "Điện Thoại - Máy Tính Bảng");
                 await context.AddAsync(new Category
@@ -103,10 +109,97 @@ namespace Ecommerce.Domain
             {
                 var category = await context.Categories.FirstOrDefaultAsync(x => x.Name == "Iphone 9");
                 var supplier = await context.Suppliers.FirstOrDefaultAsync(x => x.Name == "Tiki");
+                var man = await context.Manufacturers.FirstOrDefaultAsync((x => x.Name == "IPhone"));
                 context.Products.Add(new Product{ 
                     SupplierId = supplier.Id,
                     CategoryId = category.Id,
-                    Name = "SamSung S10",
+                    ManufacturerId = man.Id,
+                    Name = "Iphone 9 Plus",
+                    Sku = "SKu123",
+                    Price = 9000,
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "SamSung S9",
+                    Price = 7000,
+                    Sku = "SKu123",
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "Xiaomi M2",
+                    Price = 4000,
+                    Sku = "SKu123",
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "Iphone 12 Plus",
+                    Sku = "SKu123",
+                    Price = 29000,
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "Google Pixel L2",
+                    Price = 8000,
+                    Sku = "SKu123",
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "Nokia Lumia 520",
+                    Price = 15000,
+                    Sku = "SKu123",
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "Nokia Lumia 920",
+                    Price = 10000,
+                    Sku = "SKu123",
+                    Status = Ecommerce.Domain.Enums.Status.Active,
+                    Views = 100,
+                    UrlName = "fb.com/haisieunhan.ahihi"
+                });
+                context.Products.Add(new Product
+                {
+                    SupplierId = supplier.Id,
+                    CategoryId = category.Id,
+                    ManufacturerId = man.Id,
+                    Name = "OnePlus X2",
+                    Price = 18000,
                     Sku = "SKu123",
                     Status = Ecommerce.Domain.Enums.Status.Active,
                     Views = 100,

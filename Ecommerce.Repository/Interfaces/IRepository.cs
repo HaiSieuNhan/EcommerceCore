@@ -24,6 +24,8 @@ namespace Ecommerce.Repository.Interfaces
         void UpdateRange(List<T> entity);
         void Delete(T entity, bool isSave);
         void DeleteRange(List<T> entity);
+        
+
         #endregion
         #region Async Function
         Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
@@ -36,11 +38,13 @@ namespace Ecommerce.Repository.Interfaces
                                  Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
 
         Task<T> AddAsync(T entity, bool isSave);
+        
         Task<bool> AddManyAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity, bool isSave);
         Task UpdateRangeAsync(List<T> entity);
         Task DeleteAsync(T entity, bool isSave);
         Task DeleteRangeAsync(List<T> entity);
+        Task SaveChangesAsync(bool isSave);
         #endregion
     }
 }

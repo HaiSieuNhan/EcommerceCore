@@ -9,6 +9,6 @@ namespace Ecommerce.Service.ViewModels.Admin.AddProduct
         public IEnumerable<Category> Category { get; set; }
         public IEnumerable<Supplier> Supplier { get; set; }
         public IEnumerable<Manufacturer> Manufacturer { get; set; }
-      
+
     }
 }

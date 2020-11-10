@@ -7,7 +7,7 @@ namespace Ecommerce.Service.Dto
 {
     public class CategoryDto
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         [Required(ErrorMessage ="Field is required")]
         public string Name { get; set; }
         [StringLength(50, ErrorMessage ="Max length is 50 char")]

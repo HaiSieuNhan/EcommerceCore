@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.Interface;
-using Ecommerce.Service.ViewModels.Admin.AddProduct;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Ecommerce.Common.Helpers;
+using Ecommerce.Service.ViewModels.Admin.AddProduct;
 
 namespace Ecommerce.Admin.Controllers
 {
@@ -31,33 +31,15 @@ namespace Ecommerce.Admin.Controllers
             _hostEnvironment = hostEnvironment;
         }
         //GET: ProductController
-        public async Task<IActionResult> GetListProduct(string order, string searchString, int? page)
+        public async Task<IActionResult> GetListProduct(string order, string searchString, int page = 1, int pageSize = 3)
         {
-            // paging
-            if (page == null) page = 1;
-            // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
-            int pageSize = 3;
-            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
-            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
-            int pageNumber = (page ?? 1);
+            //if (page == null) page = 1;
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
             var listproduct = await _productSevice.GetListProduct(order, searchString);
             ViewBag.NameSortParm = order;
-            return View(listproduct.ToPagedList(pageNumber, pageSize));
+            return View(listproduct.ToPagedList(page, pageSize));
         }
-        //public async Task<IActionResult> GetListProduct(string order, string searchString, int? page)
-        //{
-        //    //// paging
-        //    //if (page == null) page = 1;
-        //    //// 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
-        //    //int pageSize = 3;
-        //    //// 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
-        //    //// nếu page = null thì lấy giá trị 1 cho biến pageNumber.
-        //    //int pageNumber = (page ?? 1);
-        //    var listproduct = await _productSevice.GetListProduct(order, searchString,1,1);
-        //    ViewBag.NameSortParm = order;
-        //    return View(listproduct/*.ToPagedList(pageNumber, pageSize)*/);
-        //}
-        // GET: ProductController/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
             var DetailsProduct = await _productSevice.GetDetailsProductAdminViewModels(id);
@@ -81,7 +63,7 @@ namespace Ecommerce.Admin.Controllers
 
         // POST: ProductController/Create
         [HttpPost]
-       //[ValidateAntiForgeryToken]
+       [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
         {
             if (ModelState.IsValid)
@@ -91,43 +73,6 @@ namespace Ecommerce.Admin.Controllers
                 return RedirectToAction(nameof(GetListProduct)); 
             }
             return View(product);
-        }
-        private void UploadImageIfAvailable(Product product)
-        {
-            //Get ProductID we have saved in database            
-            var ProductID = product.Id;
-
-            //Get wwrootPath to save the file on server
-            string wwrootPath = _hostEnvironment.WebRootPath;
-
-            //Get the Uploaded files
-            var files = HttpContext.Request.Form.Files;
-            
-            //Get the reference of DBSet for the bike we have saved in our database
-            var SavedProduct = _productSevice.GetById(ProductID);
-
-
-            //Upload the file on server and save the path in database if user have submitted file
-            if (files.Count != 0)
-            {
-                //Extract the extension of submitted file
-                var Extension = Path.GetExtension(files[0].FileName);
-
-                //Create the relative image path to be saved in database table 
-                var RelativeImagePath = Image.ProductImagePath + ProductID + Extension;
-
-                //Create absolute image path to upload the physical file on server
-                var AbsImagePath = Path.Combine(wwrootPath, RelativeImagePath);
-
-
-                //Upload the file on server using Absolute Path
-                using (var filestream = new FileStream(AbsImagePath, FileMode.Create))
-                {
-                    files[0].CopyTo(filestream);
-                }
-                //Set the path in database
-                SavedProduct.ImageName = RelativeImagePath;
-            }
         }
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)

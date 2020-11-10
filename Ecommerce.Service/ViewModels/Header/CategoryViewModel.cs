@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Service.ViewModels
+namespace Ecommerce.Service.ViewModels.Header
 {
     public class CategoryViewModel
     {

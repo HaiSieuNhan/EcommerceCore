@@ -5,7 +5,7 @@ using Ecommerce.Domain.Models;
 using Ecommerce.Repository;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
-using Ecommerce.Service.ViewModels;
+using Ecommerce.Service.ViewModels.Header;
 
 namespace Ecommerce.Service.Services
 {

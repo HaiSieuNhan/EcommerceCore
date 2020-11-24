@@ -24,7 +24,7 @@ namespace Ecommerce.Service.Interface
         #endregion
 
         #region Async function
-
+        IQueryable<T> GetAllAsQueryable();
         Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
         Task<T> FindAsync(Expression<Func<T, bool>> match);
         Task<T> GetByIdAsync(Guid id);
@@ -35,6 +35,8 @@ namespace Ecommerce.Service.Interface
         Task DeleteAsync(T entity, bool isSave = true);
 
         Task SaveChangesAsync(bool isSave = true);
+        Task UpdateMultiFielStatusAsync(List<T> entities);
+        Task DeleteMultiAsync(List<T> entities);
         #endregion
 
 

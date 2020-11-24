@@ -30,7 +30,7 @@ namespace Ecommerce.Core.ViewModels
             CreateMap<SupplierDto, Supplier>();
             CreateMap<ManufacturerDto, Manufacturer>();
             CreateMap<UserDto, User>();
-            CreateMap<RoleDto, Role>();
+
         }
     }
 }

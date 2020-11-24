@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ecommerce.Service.Interface;
 using Ecommerce.Repository;
 using Ecommerce.Repository.Interfaces;
+using Ecommerce.Domain.Enums;
 
 namespace Ecommerce.Service.Services
 {
@@ -64,6 +65,17 @@ namespace Ecommerce.Service.Services
         {
             await _baseReponsitory.SaveChangesAsync(isSave);
         }
+
+        public virtual async Task UpdateMultiFielStatusAsync(List<T> entities)
+        {
+            await _baseReponsitory.UpdateMultiFielStatusAsync(entities);
+        }
+
+        public virtual async Task DeleteMultiAsync(List<T> entities)
+        {
+            await _baseReponsitory.DeleteMultiAsync(entities);
+        }
+
         #endregion
 
         #region Normal
@@ -123,7 +135,12 @@ namespace Ecommerce.Service.Services
             
         }
 
-        
+        public IQueryable<T> GetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         #endregion
 

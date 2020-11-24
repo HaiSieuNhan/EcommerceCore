@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Domain.Models
 {
-    public class Role:BaseModel
+    public static class Role
     {
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
-        public virtual ICollection<User> Users { get; set; }
+        public const string Admin = "Admin";
+        public const string Staff = "Staff";
+        public const string Guest = "Guest";
+        public const string Customer = "Customer";
     }
 }

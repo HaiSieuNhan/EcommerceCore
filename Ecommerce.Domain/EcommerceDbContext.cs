@@ -30,7 +30,6 @@ namespace Ecommerce.Domain
        // public DbSet<Language> Languages { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<ProductRating> ProductRatings { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<TransactionHistory> TransactionHistories { get; set; }
         public DbSet<HistoryDetail> HistoryDetails { get; set; }
         public DbSet<User> Users { get; set; }

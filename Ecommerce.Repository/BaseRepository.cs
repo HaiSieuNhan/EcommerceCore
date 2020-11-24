@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Ecommerce.Domain;
+using Ecommerce.Domain.Enums;
 using Ecommerce.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -94,7 +95,17 @@ namespace Ecommerce.Repository
             DbContext.Set<T>().RemoveRange(entities);
             await DbContext.SaveChangesAsync();
         }
+        public async Task UpdateMultiFielStatusAsync(List<T> entities)
+        {
+            DbContext.Set<T>().UpdateRange(entities);
+            await DbContext.SaveChangesAsync();
+        }
 
+        public async Task DeleteMultiAsync(List<T> entities)
+        {
+            DbContext.Set<T>().RemoveRange(entities);
+            await DbContext.SaveChangesAsync();
+        }
 
         #endregion
 
@@ -231,11 +242,7 @@ namespace Ecommerce.Repository
             DbContext.SaveChangesAsync();
         }
 
-        
-
-
-
-
+        public virtual IQueryable<T> GetAllAsQueryable() => DbContext.Set<T>();
         #endregion
 
 

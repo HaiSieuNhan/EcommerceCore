@@ -64,18 +64,18 @@ namespace Ecommerce.Portal
             {
                 x.Events = new JwtBearerEvents
                 {
-                    OnTokenValidated = context =>
-                    {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        var userId = Guid.Parse(context.Principal.Identity.Name);
-                        var user = userService.GetById(userId);
-                        if (user == null)
-                        {
-                            // return unauthorized if user no longer exists
-                            context.Fail("Unauthorized");
-                        }
-                        return Task.CompletedTask;
-                    }
+                    //OnTokenValidated = context =>
+                    //{
+                    //    var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                    //    var userId = Guid.Parse(context.Principal.Identity.Name);
+                    //    var user = userService.GetById(userId);
+                    //    if (user == null)
+                    //    {
+                    //        // return unauthorized if user no longer exists
+                    //        context.Fail("Unauthorized");
+                    //    }
+                    //    return Task.CompletedTask;
+                    //}
                 };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -165,6 +165,7 @@ namespace Ecommerce.Portal
             app.UseAuthentication();
             app.UseApiResponseAndExceptionWrapper();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoint => {
                 endpoint.MapControllers();
             });
@@ -211,7 +212,10 @@ namespace Ecommerce.Portal
 
             services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
             services.AddScoped<IManufacturerServices, ManufacturerServices>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
+             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
         }
     }
 }

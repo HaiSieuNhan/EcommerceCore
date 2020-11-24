@@ -86,6 +86,11 @@ namespace EcommerceAdmin
 
             services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
             services.AddScoped<IManufacturerServices, ManufacturerServices>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUserProfileRepository, UserProfileRepository>();
         }
     }
 }

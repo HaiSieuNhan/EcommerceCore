@@ -10,50 +10,18 @@ namespace Ecommerce.Domain.Models
 {
     public class User : BaseModel
     {
-        #region Property
-        //[Required]
-        //[MaxLength(256)]
-        //public string UserName { get; set; }
-        //[MaxLength(256)]
-        //public string FirstName { get; set; }
-        //[MaxLength(256)]
-        //public string LastName { get; set; }
-        //public DateTime LastLoginDate { get; set; }
-        //public byte[] PassWordHash { get; set; }
-        //public byte[] PassWordSalt { get; set; }
         [Required]
-        [MaxLength(256)]
-        public string FirstName { get; set; }
-        [Required]
-        [MaxLength(256)]
-        public string LastName { get; set; }
-        [Required]
-        [MaxLength(256)]
+        [StringLength(100)]
         public string Username { get; set; }
+        public string Token { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Avatar { get; set; }
-        #endregion
+        public string Roles { get; set; }
+        public bool IsConfirmation { get; set; }
+        #region Relationship
+        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
 
-
-        #region RelationShip
-        //[ForeignKey("Role")]
-        //public Guid RoleId { get; set; }
-        //public virtual Role Role { get; set; }
-
-        //public ICollection<Point> Points { get; set; }
-        //public ICollection<ProductRating> ProductRatings { get; set; }
-        //public ICollection<UserProfile> UserProfiles { get; set; }
-        //public ICollection<TransactionHistory> Orders { get; set; }
-        //public ICollection<Cart> Carts { get; set; }
-        //public ICollection<TransactionHistory> TransactionHistories { get; set; }
-        //public ICollection<Comment> Comments { get; set; }
-        [ForeignKey("Role")]
-        public Guid RoleId { get; set; }
-        public virtual Role Role { get; set; }
         #endregion
 
     }

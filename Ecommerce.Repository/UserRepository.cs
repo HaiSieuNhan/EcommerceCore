@@ -6,6 +6,7 @@ using Ecommerce.Domain;
 using System.Linq;
 using Ecommerce.Repository.Interfaces;
 using EcommerceCommon.Infrastructure.Helper;
+using System.Threading.Tasks;
 
 namespace Ecommerce.Repository
 {
@@ -15,23 +16,26 @@ namespace Ecommerce.Repository
         {
         }
 
-        public User Authenticate(string username, string password)
+        public async Task<User> Authenticate(string username, string password)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return null;
+            //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            //    return null;
+            //var user = await GetFirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
+            //// check if username exists
+            //if (user == null)
+            //    return null;
+            //// check if password is correct
+            //if (!AuthenUserHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            //    return null;
 
-            var user = DbContext.Users.SingleOrDefault(x => x.Username == username);
+            //// authentication successful
+            //return user;
+            throw new NotImplementedException();
+        }
 
-            // check if username exists
-            if (user == null)
-                return null;
-
-            // check if password is correct
-            if (!AuthenUserHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
-
-            // authentication successful
-            return user;
+        public Task<User> RegisterUser(User user)
+        {
+            throw new NotImplementedException();
         }
 
         public User Create(User user, string password)
@@ -40,7 +44,7 @@ namespace Ecommerce.Repository
                 throw new Exception("Password is required");
 
             if (DbContext.Users.Any(x => x.Username == user.Username))
-                throw new Exception("UserName \"" + user.Username + "\" is already taken");
+                throw new Exception("Username \"" + user.Username + "\" is already taken");
 
             byte[] passwordHash;
             byte[] passwordSalt;
@@ -67,13 +71,10 @@ namespace Ecommerce.Repository
             {
                 // username has changed so check if the new username is already taken
                 if (DbContext.Users.Any(x => x.Username == userParam.Username))
-                    throw new Exception("UserName " + userParam.Username + " is already taken");
+                    throw new Exception("Username " + userParam.Username + " is already taken");
             }
 
             // update user properties
-            user.FirstName = userParam.FirstName;
-            user.LastName = userParam.LastName;
-            user.Username = userParam.Username;
 
             // update password if it was entered
             if (!string.IsNullOrWhiteSpace(password))
@@ -97,6 +98,11 @@ namespace Ecommerce.Repository
                 DbContext.Users.Remove(user);
                 DbContext.SaveChanges();
             }
+        }
+
+        User IUserRepository.Authenticate(string username, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

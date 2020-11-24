@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.Repository.Interfaces
@@ -15,27 +13,28 @@ namespace Ecommerce.Repository.Interfaces
         IQueryable<T> GetAll();
         T Find(Expression<Func<T, bool>> match);
         ICollection<T> FindAll(Expression<Func<T, bool>> match);
-        T GetFirstOrDefault(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
-                                 IOrderedQueryable<T>> orderBy = null,
-                                 Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
+        //T GetFirstOrDefault(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+        //                         IOrderedQueryable<T>> orderBy = null,
+        //                         Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
         T Add(T entity, bool isSave);
         bool AddMany(IEnumerable<T> entities);
         void Update(T entity, bool isSave);
         void UpdateRange(List<T> entity);
         void Delete(T entity, bool isSave);
         void DeleteRange(List<T> entity);
-        
+
 
         #endregion
         #region Async Function
+        IQueryable<T> GetAllAsQueryable();
         Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
         Task<T> FindAsync(Expression<Func<T, bool>> match);
         Task<T> GetByIdAsync(Guid id);
         Task<IQueryable<T>> GetAllAsync();
 
-        T GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
-                                 IOrderedQueryable<T>> orderBy = null,
-                                 Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
+        //T GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+        //                         IOrderedQueryable<T>> orderBy = null,
+        //                         Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
 
         Task<T> AddAsync(T entity, bool isSave);
         
@@ -45,6 +44,10 @@ namespace Ecommerce.Repository.Interfaces
         Task DeleteAsync(T entity, bool isSave);
         Task DeleteRangeAsync(List<T> entity);
         Task SaveChangesAsync(bool isSave);
+
+        Task UpdateMultiFielStatusAsync(List<T> entities);
+        Task DeleteMultiAsync(List<T> entities);
+            
         #endregion
     }
 }

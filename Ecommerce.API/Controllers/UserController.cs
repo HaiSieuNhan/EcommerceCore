@@ -35,37 +35,24 @@ namespace Ecommerce.Portal.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public ApiResponse Login([FromBody]UserLoginDto userDto)
+        public async Task<ApiResponse> Login([FromBody]UserLoginDto userDto)
         {
-            var user = _userService.Authenticate(userDto.Username, userDto.Password);
-
-            if (user == null)
-                return new ApiResponse("Username or password is incorrect", 400);
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_authencationSetting.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role.Name)
+                    new Claim(ClaimTypes.Name, "SyNV"),
+                    new Claim(ClaimTypes.Role, "admin")
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            // return basic user info (without password) and token to store client side
-            return new ApiResponse("Login success", new
-            {
-                Id = user.Id,
-                Username = user.Username,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Token = tokenString
-            });
+            return new ApiResponse("list user", tokenString, 200);
         }
 
         [AllowAnonymous]

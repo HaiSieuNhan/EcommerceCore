@@ -7,7 +7,7 @@
 - Visual Studio 2019
 - SQL Server 2019
 ## How to configure and run
-- Clone code from Github: git clone https://github.com/HaiSieuNhan/Quan-Ly-Xe.git
+- Clone code from Github: git clone https://github.com/HaiSieuNhan/EcommerceCore
 - Open solution EcommerceCore.sln in Visual Studio 2019
 - Set startup project is EcommerceCore.Web
 - Change connection string in appsetting.json in EcommerceCore.Web project

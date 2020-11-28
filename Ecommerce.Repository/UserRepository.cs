@@ -20,7 +20,7 @@ namespace Ecommerce.Repository
         {
             //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             //    return null;
-            //var user = await GetFirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
+            //var user = await GetFirstOrDefaultAsync(x => x.Username == username);
             //// check if username exists
             //if (user == null)
             //    return null;

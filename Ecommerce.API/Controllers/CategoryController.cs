@@ -125,7 +125,6 @@ namespace Ecommerce.Portal.Controllers
             }
             catch (Exception ex)
             {
-
                 throw new ApiException(ex, 400);
             }
         }

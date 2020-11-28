@@ -86,7 +86,7 @@ namespace Ecommerce.Service.Services
                             {
                                 Name = t.Name,
                                 Description = t.Description,
-                                Sort  =t.Sort,
+                                Sort = t.Sort,
                                 IsDisplayHomePage = t.IsDisplayHomePage
                             });
             if (!string.IsNullOrEmpty(search.Filter.Search))

@@ -72,15 +72,7 @@ namespace Ecommerce.Repository
             return staffList;
         }
 
-        public void Update(UserProfile profile)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+      
 
 
 

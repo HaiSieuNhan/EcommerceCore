@@ -18,19 +18,18 @@ namespace Ecommerce.Repository
 
         public async Task<User> Authenticate(string username, string password)
         {
-            //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            //    return null;
-            //var user = await GetFirstOrDefaultAsync(x => x.Username == username);
-            //// check if username exists
-            //if (user == null)
-            //    return null;
-            //// check if password is correct
-            //if (!AuthenUserHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            //    return null;
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return null;
+            var user =  GetFirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
+            // check if username exists
+            if (user == null)
+                return null;
+            // check if password is correct
+            if (!AuthenUserHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
 
-            //// authentication successful
-            //return user;
-            throw new NotImplementedException();
+            // authentication successful
+            return user;
         }
 
         public Task<User> RegisterUser(User user)
@@ -100,9 +99,5 @@ namespace Ecommerce.Repository
             }
         }
 
-        User IUserRepository.Authenticate(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

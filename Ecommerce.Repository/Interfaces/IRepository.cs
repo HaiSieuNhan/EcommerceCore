@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,9 +14,9 @@ namespace Ecommerce.Repository.Interfaces
         IQueryable<T> GetAll();
         T Find(Expression<Func<T, bool>> match);
         ICollection<T> FindAll(Expression<Func<T, bool>> match);
-        //T GetFirstOrDefault(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
-        //                         IOrderedQueryable<T>> orderBy = null,
-        //                         Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
+        T GetFirstOrDefault(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+                                 IOrderedQueryable<T>> orderBy = null,
+                                 Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
         T Add(T entity, bool isSave);
         bool AddMany(IEnumerable<T> entities);
         void Update(T entity, bool isSave);
@@ -32,9 +33,9 @@ namespace Ecommerce.Repository.Interfaces
         Task<T> GetByIdAsync(Guid id);
         Task<IQueryable<T>> GetAllAsync();
 
-        //T GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
-        //                         IOrderedQueryable<T>> orderBy = null,
-        //                         Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
+        T GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
+                                 IOrderedQueryable<T>> orderBy = null,
+                                 Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
 
         Task<T> AddAsync(T entity, bool isSave);
         

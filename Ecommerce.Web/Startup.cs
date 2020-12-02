@@ -80,8 +80,12 @@ namespace Ecommerce.Web
             services.AddScoped<ICartDetailsServices, CartDetailsServices>();
             services.AddScoped<ICartDetailsRepository, CartDetailsRepository>();
 
-            //services.AddScoped<IRoleReponsitory, RoleReponsitory>();
-            //services.AddScoped<IRoleServices, RoleService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+            services.AddScoped<IUserProfileService, UserProfileService>();
         }
     }
 }

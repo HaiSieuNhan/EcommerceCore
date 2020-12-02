@@ -35,8 +35,13 @@ namespace Ecommerce.Portal.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ApiResponse> Login([FromBody]UserLoginDto userDto)
+        public async Task<ApiResponse> Login([FromBody] UserLoginDto userDto)
         {
+            //var user = await _userService.Authenticate(userDto.Username, userDto.Password, userDto.SessionId);
+
+            //if (user == null)
+            //    throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_authencationSetting.Secret);
             var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
@@ -52,24 +57,14 @@ namespace Ecommerce.Portal.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return new ApiResponse("list user", tokenString, 200);
+            return new ApiResponse("Token", tokenString, 200);
         }
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public ApiResponse Register([FromBody]UserDto userDto)
+        public ApiResponse Register([FromBody] UserDto userDto)
         {
-            try
-            {
-                // save 
-                _userService.Create(userDto, userDto.Password);
-                return new ApiResponse("Register user success", 200);
-            }
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                return new ApiResponse("Can't register user", ex, 400);
-            }
+            return null;
         }
         [Authorize(Roles = "Admin")]
         [Route("get-all-user")]
@@ -81,22 +76,22 @@ namespace Ecommerce.Portal.Controllers
             return new ApiResponse("list user", userDtos, 200);
         }
 
-        
+
         [HttpGet("get-user-by-id/{name}")]
-        public async Task<ApiResponse> GetUserByUserName(string name)
+        public async Task<ApiResponse> GetUserByUserName(string username)
         {
             try
             {
-                var user = await _userService.FindAsync(c => c.Username == name);
+                var user = await _userService.FindAsync(c => c.Username == username);
                 if (user == null)
                 {
-                    return new ApiResponse("Can't find user with name", name, 200);
+                    return new ApiResponse("Can't find user with name", username, 200);
                 }
 
                 // var currentUserId = Guid.Parse(User.Identity.Name);
                 if (!User.IsInRole("Admin"))
                 {
-                    return new ApiResponse("forbidden", name, 403);
+                    return new ApiResponse("forbidden", username, 403);
                 }
 
                 var userDto = _mapper.Map<UserDto>(user);
@@ -109,26 +104,15 @@ namespace Ecommerce.Portal.Controllers
         }
 
         [HttpPut("{id}")]
-        public ApiResponse UpdateUser(int id, [FromBody]UserDto userDto)
+        public ApiResponse UpdateUser(int id, [FromBody] UserDto userDto)
         {
-            try
-            {
-                // save 
-                _userService.Update(userDto, userDto.Password);
-                return new ApiResponse("Update user success", userDto, 200);
-            }
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                return new ApiResponse("Can't update user", ex, 400);
-            }
+            return null;
         }
 
         [HttpDelete("delete-user/{id}")]
         public ApiResponse DeleteUser(Guid id)
         {
-            _userService.Delete(id);
-            return new ApiResponse("Delete user success", id, 200);
+            return null;
         }
 
     }

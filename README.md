@@ -13,4 +13,4 @@
 - Change connection string in appsetting.json in EcommerceCore.Web project
 - Open Tools --> Nuget Package Manager -->  Package Manager Console in Visual Studio
 - Run Update-database and Enter.
-- Choose profile to run or press F5.
+- Choose profile to run or press F5...

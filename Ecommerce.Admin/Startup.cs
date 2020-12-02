@@ -10,6 +10,8 @@ using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,11 +33,10 @@ namespace EcommerceAdmin
         {
             services.AddControllersWithViews();
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            services.AddDbContext<EcommerceDbContext>(options =>
-                options.UseSqlServer("Server=DESKTOP-FS165I4\\SQLSERVER;Database=EcommerceCore;Trusted_Connection=True;MultipleActiveResultSets=true"));
-            //services.AddDbContext<EcommerceDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EcommerceDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
             ConfigureCoreAndRepositoryService(services);
             services.AddCloudscribePagination();
         }
@@ -52,9 +53,10 @@ namespace EcommerceAdmin
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -88,9 +90,10 @@ namespace EcommerceAdmin
             services.AddScoped<IManufacturerServices, ManufacturerServices>();
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+            //services.AddScoped<IUserProfileService, UserProfileService>();
         }
     }
 }

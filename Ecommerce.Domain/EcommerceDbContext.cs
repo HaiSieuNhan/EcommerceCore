@@ -1,14 +1,17 @@
 ﻿using Ecommerce.Domain.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Domain
 {
     public class EcommerceDbContext : DbContext
     {
+       
         public EcommerceDbContext(DbContextOptions<EcommerceDbContext> options) : base(options)
         {
+        
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
@@ -34,6 +37,7 @@ namespace Ecommerce.Domain
         public DbSet<HistoryDetail> HistoryDetails { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         
     }
 }

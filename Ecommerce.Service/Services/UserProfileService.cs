@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel;
 using Ecommerce.Core.Services;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
@@ -6,27 +7,33 @@ using Ecommerce.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ecommerce.Service.Services
 {
     public class UserProfileService : EcommerceServices<UserProfile>, IUserProfileService
     {
-        private readonly IUserProfileRepository _userprofileRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
         private readonly IMapper _mapper;
+
 
         public UserProfileService(IUserProfileRepository userProfileRepository, IMapper mapper) : base(userProfileRepository)
         {
-            _userprofileRepository = userProfileRepository;
+            _userProfileRepository = userProfileRepository;
             _mapper = mapper;
         }
 
-        void IUserProfileService.Delete(Guid id)
+
+        public async Task<IList<CustomerAdminViewModel>> GetCustomerListViewModel()
         {
-            throw new NotImplementedException();
+            var customerlist = await _userProfileRepository.GetCustomerListViewModel();
+            return customerlist;
         }
-        void IUserProfileService.Create(UserProfile profile)
+
+        public async Task<IList<StaffAdminViewModel>> GetStaffListViewModel()
         {
-            throw new NotImplementedException();
+            var stafflist = await _userProfileRepository.GetStaffListViewModel();
+            return stafflist;
         }
 
 

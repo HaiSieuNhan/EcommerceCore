@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Ecommerce.Common.Infrastructure.ViewModel.Admin.ViewModel;
 using Ecommerce.Domain.Models;
 namespace Ecommerce.Repository.Interfaces
 {
@@ -9,7 +11,7 @@ namespace Ecommerce.Repository.Interfaces
 
         //IEnumerable<User> GetAll();
         //User GetById(int id);
-        void Update(UserProfile profile);
-        void Delete(Guid id);
+        Task<IList<CustomerAdminViewModel>> GetCustomerListViewModel();
+        Task<IList<StaffAdminViewModel>> GetStaffListViewModel();
     }
 }
